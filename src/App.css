@@ -13,7 +13,7 @@ html {
 
 body {
   margin: 0;
-  background-color: papayawhip;
+  background-color: grey;
   color: #17212B;
   font-family: Arial, sans-serif;
 }
@@ -176,7 +176,7 @@ a {
 }
 
 .titulo-seccion > span {
-  color: #16834b;
+  color: white;
   font-size: 12px;
   font-weight: bold;
   letter-spacing: 2px;
@@ -188,7 +188,7 @@ a {
 }
 
 .titulo-seccion p {
-  color: #718076;
+  color: white;
 }
 
 .productos-lista {
@@ -211,6 +211,14 @@ a {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px #203b2512;
 }
+  .producto img {
+  width: 140px;
+  height: 150px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 15px;
+  
+  }
 
 .producto-icono {
   width: 85px;
@@ -360,6 +368,29 @@ footer {
   .titulo-seccion h2 {
     font-size: 27px;
   }
+
+  .titulo-cilindro {
+    color: green;
+  }
+  .carrito h2 {
+    color: #17643c;
+  }
+  .carrito {
+    background-color: #e5f1e5;
+  }
+  
+
+  .producto img {
+  width: 140px;
+  height: 150px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 15px;
+  border: 3px solid red;
+  }
+
+
+  
 
  
 }

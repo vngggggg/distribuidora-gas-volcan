@@ -1,46 +1,79 @@
 
 import './App.css'
+import Encabezado from "./components/Encabezado";
+import ListaProductos from './components/ListaProductos';
+import Carrito from './components/Carrito';
+import { useState } from 'react'
+
+
 const productos = [{
     id: 1,
     nombre:  "cilindro de 5 kg",
     precio:8000,
-    peso: 5
+    peso: 5,
+    etiqueta: "Mas Economico",
+    categoria: "Gas licuado",
+    imagen: "/images/productos/cilindro 5kg.jpg"
+    
 },{
   id: 2,
   nombre: "cilindro de 11 kg",
   precio: 15000,
-  peso: 11
+  peso: 11,
+  etiqueta: "Mas elegido",
+  categoria: "Gas licuado",
+  imagen: "/images/productos/cilindro 11kg.jpg"
 },{
   id: 3,
-  nombre: "cilidro de 15 kg",
+  nombre: "cilindro de 15 kg",
   precio: 22000,
-  peso: 15
+  peso: 15,
+  etiqueta: "Mayor capacidad",
+  categoria: "Gas licuado",
+  imagen: "/images/productos/cilindro 15kg.png"
 }]
 function App() {
+  const [busqueda, setBusqueda] = useState("")
+
+  const [carrito, setcarrito] = useState([])
+  
+  const agregarAlCarrito = (producto) => {
+    setcarrito((actual) => {
+      const existe = actual.find(
+        (item) => item.id === producto.id
+      )
+      if (existe) {
+        return actual.map((item) =>
+        item.id === producto.id
+      ? {...item, cantidad: item.cantidad +1}
+        : item
+      )
+      }
+      return [...actual, {...producto, cantidad: 1}]
+    })
+  }
+  const eliminarDelcarrito = (idEliminar) => {
+    setcarrito((actual) => actual.filter((producto) => producto.id !== idEliminar)
+  )
+}
+ 
+  const total = carrito.reduce(
+    (suma, producto) => suma +  producto.precio * producto.cantidad,0)
+  
+  const unidadesCarrito = carrito.reduce(
+    (suma, producto) => suma + producto.cantidad, 0
+  )
+    
+  const productosFiltrados = productos.filter((producto) =>
+    producto.nombre.toLowerCase().includes(busqueda.toLowerCase()))
   return (
     <div className="pagina">
 
-      <header className="encabezado">
-        <div className="logo">
-          <span className="logo-icono">♨️</span>
-          <div>
-            <h1>Bienvenido a Gas El Volcán</h1>
-
-            <p>Calor y confianza para tu hogar</p>
-          </div>
-        </div>
-
-        <nav className="menu">
-          <a href="#inicio">Inicio</a>
-          <a href="#productos">Cilindros</a>
-          <a href="#nosotros">Nosotros</a>
-        </nav>
-
-        <button className="boton-ingresar">
-          Iniciar sesión
-        </button>
-      </header>
-
+      <Encabezado 
+      titulo="Bienvenido a Gas El Volcan"
+      subtitulo="Calor y confianza para tu hogar"
+      unidadesCarrito={unidadesCarrito}
+      />
       <main>
         <section className="portada" id="inicio">
           <div className="portada-texto">
@@ -69,37 +102,32 @@ function App() {
         </section>
 
         <section className="productos" id="productos">
+          <div className="buscador">
+              <input
+              type="text"
+              placeholder='Buscar Cilindro...'
+              value={busqueda}
+              onChange={(e) => setBusqueda(e.target.value)}
+              />
+          </div>
           <div className="titulo-seccion">
             <span>NUESTROS PRODUCTOS</span>
-            <h2>Elige tu cilindro</h2>
+            <h2 className="titulo-cilindro">Elige tu cilindro</h2>
             <p>Encuentra el tamaño que necesitas para tu hogar.</p>
           </div>
 
-          <div className="productos-lista">
-            <article className="producto">
-              <div className="producto-icono">🛢️</div>
-              <h3>Cilindro de 5 kg</h3>
-              <p>$8.000</p>
-              <button>Ver producto</button>
-            </article>
+          <ListaProductos
+          productos={productosFiltrados}
+          onAgregar={agregarAlCarrito}
+          />
+          </section>
 
-            <article className="producto destacado">
-              <span className="popular">Más solicitado</span>
-              <div className="producto-icono">🛢️</div>
-              <h3>Cilindro de 11 kg</h3>
-              <p>$15.000</p>
-              <button>Ver producto</button>
-            </article>  
-
-            <article className="producto">
-              <div className="producto-icono">🛢️</div>
-              <h3>Cilindro de 15 kg</h3>
-              <p>$22.000</p>
-              <button>Ver producto</button>
-            </article>
-          </div>
-        </section>
-
+       
+      <Carrito
+      carrito={carrito}
+      total={total}
+      onEliminar={eliminarDelcarrito}
+      />
         <section className="nosotros" id="nosotros">
           <h2>Tu distribuidora de confianza</h2>
           <p>
