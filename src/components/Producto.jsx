@@ -2,7 +2,7 @@
 
 function Producto({producto, onAgregar, etiqueta}) {
     return(
-        <article className="producto">
+        <article className="producto col-12 col-md-6 col-lg-4">
             <img src={producto.imagen} alt={producto.nombre}/>
             <span>{etiqueta}</span>
             <h3>{producto.nombre}</h3>

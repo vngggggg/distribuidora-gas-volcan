@@ -122,7 +122,7 @@ const cambiarCantidad = (id, nuevaCantidad) => {
         carrito={carrito}
         total={total}
         onEliminar={eliminarDelcarrito}
-        onCambiarCantidad={ambiarCantidad}
+        onCambiarCantidad={cambiarCantidad}
         />
       }
     />
