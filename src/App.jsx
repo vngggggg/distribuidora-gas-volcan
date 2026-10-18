@@ -1,8 +1,6 @@
 
 import './App.css'
 import Encabezado from "./components/Encabezado";
-import ListaProductos from './components/ListaProductos';
-import Carrito from './components/Carrito';
 import { useState } from 'react'
 import { Routes, Route, Link } from 'react-router-dom';
 import Inicio from './pages/Inicio';
@@ -10,35 +8,8 @@ import Productos from './pages/Productos';
 import productosDatos from './data/productos';
 import CarritoPage from './pages/CarritoPage';
 
-const productos = [{
-    id: 1,
-    nombre:  "cilindro de 5 kg",
-    precio:8000,
-    peso: 5,
-    etiqueta: "Mas Economico",
-    categoria: "Gas licuado",
-    imagen: "/images/productos/cilindro 5kg.jpg"
-    
-},{
-  id: 2,
-  nombre: "cilindro de 11 kg",
-  precio: 15000,
-  peso: 11,
-  etiqueta: "Mas elegido",
-  categoria: "Gas licuado",
-  imagen: "/images/productos/cilindro 11kg.jpg"
-},{
-  id: 3,
-  nombre: "cilindro de 15 kg",
-  precio: 22000,
-  peso: 15,
-  etiqueta: "Mayor capacidad",
-  categoria: "Gas licuado",
-  imagen: "/images/productos/cilindro 15kg.png"
-}]
-function InicioPage() {
-  return <h1>Inicio de Gas El Volcan</h1>
-}
+
+
 function App() {
   const [busqueda, setBusqueda] = useState("")
 

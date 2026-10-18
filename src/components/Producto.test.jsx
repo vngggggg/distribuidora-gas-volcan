@@ -27,8 +27,8 @@ describe('Componente Producto', () => {
         )
 
         expect(screen.getByText('Gas 15 kg')).toBeInTheDocument();
-        expect(screen.getByText(/25\.000/)).toBeInTheDocument();
-        expect(screen.getByText(/23\.000/)).toBeInTheDocument();
+        expect(screen.getByText("Precio Residencial: $25.000")).toBeInTheDocument();
+        expect(screen.getByText("Precio Comercial: $23.000")).toBeInTheDocument();
     });
     it("permite agregar un producto al carrito", () => {
         const agregar = vi.fn();
@@ -40,8 +40,7 @@ describe('Componente Producto', () => {
             />
         );
 
-        fireEvent.click(
-            screen.getByRole('button',{name: /agregar al carrito/i})
+        fireEvent.click(screen.getByText("Agregar al Carrito")
         );
         expect(agregar).toHaveBeenCalledWith(producto);
         expect(agregar).toHaveBeenCalledTimes(1);

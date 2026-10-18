@@ -1,7 +1,10 @@
 
-
+import { useState } from "react"
+import { restar } from "../utils/calculos"
 
 function Carrito({carrito, total, onEliminar, onCambiarCantidad}) {
+    const [dinero, setDinero] = useState('');
+    const restante = restar(Number(dinero),total)
     return(
         <section
         className="carrito" id="carrito">
@@ -33,6 +36,24 @@ function Carrito({carrito, total, onEliminar, onCambiarCantidad}) {
         <p>
             Total de la compra: ${total.toLocaleString("es-CL")}
         </p>
+        <div className="calculo-dinero">
+            <h3>Calcula tu dinero restante</h3>
+            <input
+            type="number"
+            placeholder="¿Cuanto dinero tienes?"
+            value={dinero}
+            min="0"
+            onChange={(e) => setDinero(e.target.value)}
+            />
+            {dinero !== '' &&(
+                <p>
+                {restante >= 0
+                ? `Te quedan $${restante.toLocaleString("es-CL")}`
+                : `Te faltan $${Math.abs(restante).toLocaleString("es-CL")}`
+                }
+                </p>
+            )}
+        </div>
         </section>
     )
 }
