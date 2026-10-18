@@ -6,7 +6,9 @@ function Producto({producto, onAgregar, etiqueta}) {
             <img src={producto.imagen} alt={producto.nombre}/>
             <span>{etiqueta}</span>
             <h3>{producto.nombre}</h3>
-            <p>${producto.precio.toLocaleString("es-CL")}</p>
+            <p>Precio Residencial: ${producto.precioResidencial.toLocaleString("es-CL")}</p>
+            <p>Precio Comercial: ${producto.precioComercial.toLocaleString("es-CL")}</p>
+            
             <button onClick={() => onAgregar(producto)}>
                 Agregar al Carrito
             </button>

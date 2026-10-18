@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { Routes, Route, Link } from 'react-router-dom';
 import Inicio from './pages/Inicio';
 import Productos from './pages/Productos';
+import productosDatos from './data/productos';
 import CarritoPage from './pages/CarritoPage';
 
 const productos = [{
@@ -81,9 +82,18 @@ const cambiarCantidad = (id, nuevaCantidad) => {
   const unidadesCarrito = carrito.reduce(
     (suma, producto) => suma + producto.cantidad, 0
   )
+  const productos = productosDatos.map((producto) =>({
+    ...producto,
+    precio: producto.precioResidencial,
+    etiqueta: producto.codigo,
+    peso: producto.nombre,
+  }));
     
   const productosFiltrados = productos.filter((producto) =>
     producto.nombre.toLowerCase().includes(busqueda.toLowerCase()))
+
+  
+  
 
   return (
     <div className='pagina'>
