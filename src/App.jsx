@@ -4,7 +4,10 @@ import Encabezado from "./components/Encabezado";
 import ListaProductos from './components/ListaProductos';
 import Carrito from './components/Carrito';
 import { useState } from 'react'
-
+import { Routes, Route, Link } from 'react-router-dom';
+import Inicio from './pages/Inicio';
+import Productos from './pages/Productos';
+import CarritoPage from './pages/CarritoPage';
 
 const productos = [{
     id: 1,
@@ -32,6 +35,9 @@ const productos = [{
   categoria: "Gas licuado",
   imagen: "/images/productos/cilindro 15kg.png"
 }]
+function InicioPage() {
+  return <h1>Inicio de Gas El Volcan</h1>
+}
 function App() {
   const [busqueda, setBusqueda] = useState("")
 
@@ -56,6 +62,18 @@ function App() {
     setcarrito((actual) => actual.filter((producto) => producto.id !== idEliminar)
   )
 }
+const cambiarCantidad = (id, nuevaCantidad) => {
+  if (nuevaCantidad < 1) {
+    return
+  }
+  setcarrito((actual) =>
+  actual.map((producto) =>
+    producto.id === id
+      ? { ...producto, cantidad: nuevaCantidad}
+      : producto
+  
+  ))
+}
  
   const total = carrito.reduce(
     (suma, producto) => suma +  producto.precio * producto.cantidad,0)
@@ -66,83 +84,70 @@ function App() {
     
   const productosFiltrados = productos.filter((producto) =>
     producto.nombre.toLowerCase().includes(busqueda.toLowerCase()))
-  return (
-    <div className="pagina">
 
-      <Encabezado 
-      titulo="Bienvenido a Gas El Volcan"
+  return (
+    <div className='pagina'>
+      <Encabezado
+      titulo="bienvenido a gas El Volcan"
       subtitulo="Calor y confianza para tu hogar"
       unidadesCarrito={unidadesCarrito}
       />
-      <main>
-        <section className="portada" id="inicio">
-          <div className="portada-texto">
-            <span className="etiqueta">DISTRIBUIDORA EN CHILLÁN</span>
+    
+    <nav className="menu menu-paginas">
+        <Link to="/">Inicio</Link>
+        <Link to="/productos">Cilindros</Link>
+        <Link to="/carrito">
+        Carrito ({unidadesCarrito})
+        </Link>
+      </nav>
+    <main>
+      <Routes>
+        <Route path='/' element={<Inicio />}/>
 
-            <h2>El gas que tu hogar necesita, a un clic de distancia.</h2>
-
-            <p>
-              Compra tu cilindro de gas de forma sencilla
-              y sigue el estado de tu pedido desde tu hogar.
-            </p>
-
-            <a href="#productos" className="boton-principal">
-              Ver cilindros
-            </a>
-          </div>
-
-          <div className="portada-visual">
-            <div className="circulo">
-              <span>♨️</span>
-            </div>
-            <div className="mensaje-entrega">
-              ✓ Entregas en Chillán
-            </div>
-          </div>
-        </section>
-
-        <section className="productos" id="productos">
-          <div className="buscador">
-              <input
-              type="text"
-              placeholder='Buscar Cilindro...'
-              value={busqueda}
-              onChange={(e) => setBusqueda(e.target.value)}
-              />
-          </div>
-          <div className="titulo-seccion">
-            <span>NUESTROS PRODUCTOS</span>
-            <h2 className="titulo-cilindro">Elige tu cilindro</h2>
-            <p>Encuentra el tamaño que necesitas para tu hogar.</p>
-          </div>
-
-          <ListaProductos
+        <Route
+        path='/productos'
+        element={
+          <Productos
           productos={productosFiltrados}
           onAgregar={agregarAlCarrito}
+          busqueda={busqueda}
+          setBusqueda={setBusqueda}
           />
-          </section>
+        }
+       /> 
+       <Route
+       path='/carrito'
+       element={
+        <CarritoPage
+        carrito={carrito}
+        total={total}
+        onEliminar={eliminarDelcarrito}
+        onCambiarCantidad={ambiarCantidad}
+        />
+      }
+    />
+    <Route
+  path="*"
+  element={
+    <section className="pagina-error">
+      <h2>¡Ups! Página no encontrada</h2>
+      <p>Lo sentimos, no encontramos la página que buscas.</p>
+      <Link to="/">Volver al inicio</Link>
+    </section>
+  }
+/>
 
        
-      <Carrito
-      carrito={carrito}
-      total={total}
-      onEliminar={eliminarDelcarrito}
-      />
-        <section className="nosotros" id="nosotros">
-          <h2>Tu distribuidora de confianza</h2>
-          <p>
-            Queremos que pedir gas sea más fácil y cómodo
-            para las familias de Chillán.
-          </p>
-        </section>
-      </main>
-
-      <footer>
-        <p>© 2026 Gas El Volcán · Chillán, Región de Ñuble</p>
-      </footer>
-
+       </Routes> 
+    </main>
+    <footer>
+      <p>
+        © 2026 Gas El Volcán · Chillán, Región de Ñuble
+      </p>
+    </footer>
     </div>
-  )
-}
+    
+    )
+  }
 
 export default App

@@ -13,7 +13,7 @@ html {
 
 body {
   margin: 0;
-  background-color: grey;
+  background-color: #f8faf7;
   color: #17212B;
   font-family: Arial, sans-serif;
 }
@@ -296,6 +296,57 @@ footer {
   text-align: center;
   font-size: 13px;
 }
+.menu-paginas {
+  width: 100%;
+  padding: 18px 6%;
+  justify-content: center;
+  gap: 35px;
+  background-color: white;
+  border-bottom: 1px solid #e5e9e1;
+}
+
+.menu-paginas a {
+  color: #35473b;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.menu-paginas a:hover {
+  color: #16834b;
+}
+.control-cantidad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 12px 0;
+  padding-left: 0;
+}
+
+.control-cantidad button {
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 8px;
+  background-color: #17643c;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.control-cantidad button:hover {
+  background-color: #10482b;
+}
+
+.control-cantidad span {
+  min-width: 25px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+}
 
 @media (max-width: 900px) {
   .encabezado {
@@ -373,7 +424,7 @@ footer {
     color: green;
   }
   .carrito h2 {
-    color: #17643c;
+   color: black;
   }
   .carrito {
     background-color: #e5f1e5;
@@ -388,9 +439,76 @@ footer {
   margin: 0 auto 15px;
   border: 3px solid red;
   }
+  .carrito h2 {
+  color: black;
+  }
+  
+  .carrito {
+  color: #000000;
+  background-color: #ffffff;
+  }
+
+  .carrito h2,
+  .carrito h3,
+  .carrito p,
+  .carrito div {
+  color: #000000;
+  }
+
+  .pagina-carrito {
+  color: #000000;
+  background-color: #ffffff;
+  padding: 30px;
+  }
+
+  .pagina-carrito h1,
+  .pagina-carrito h2,
+  .pagina-carrito p {
+  color: #000000;
+  } 
+  .pagina-error {
+  width: 90%;
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 50px 25px;
+  text-align: center;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px #00000010;
+}
+
+.pagina-error h2 {
+  color: #17643c;
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.pagina-error p {
+  color: #17212b;
+  margin-bottom: 25px;
+}
+
+.pagina-error a {
+  display: inline-block;
+  padding: 12px 20px;
+  color: white;
+  background-color: #17643c;
+  text-decoration: none;
+  border-radius: 8px;
+} 
+ 
+
+
+
+
+
+  
+
+}
+
 
 
   
 
  
-}
+

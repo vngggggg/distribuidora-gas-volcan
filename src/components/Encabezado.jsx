@@ -10,11 +10,7 @@ function Encabezado({ titulo, subtitulo, unidadesCarrito }) {
         </div>
       </div>
 
-      <nav className="menu">
-        <a href="#inicio">Inicio</a>
-        <a href="#productos">Cilindros</a>
-        <a href="#nosotros">Nosotros</a>
-      </nav>
+      
       <div className="contador-carrito">
         🛒 Carrito ({unidadesCarrito})
       </div>
