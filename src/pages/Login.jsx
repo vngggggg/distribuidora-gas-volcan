@@ -22,9 +22,13 @@ function Login() {
   }
 
   return (
-    <section className="contacto">
-      <h2>Iniciar sesión</h2>
-      <p>Acceso para administradores</p>
+    
+
+  <section className="contacto">
+    <h2>Iniciar sesión</h2>
+    <p>Acceso para administradores</p>
+
+    <div className="login-contenedor">
 
       <form className="formulario-contacto" onSubmit={ingresar}>
         <div className="campo-contacto">
@@ -47,11 +51,22 @@ function Login() {
         </div>
 
         <button type="submit">Ingresar</button>
+        <p role="alert">{error}</p>
       </form>
 
-      <p role="alert">{error}</p>
-    </section>
-  );
+      <aside className="login-demo">
+        <h3>Acceso de prueba</h3>
+        <p>Credenciales para demostrar el funcionamiento del sistema.</p>
+
+        <p><strong>Usuario:</strong> admin</p>
+        <p><strong>Contraseña:</strong> admin123</p>
+      </aside>
+
+    </div>
+  </section>
+);
+
+    
 }
 
 export default Login;

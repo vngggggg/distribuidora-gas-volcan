@@ -12,7 +12,7 @@ function Admin() {
     }
     return (
         <section className="contacto">
-            <h2>Pnale de Administracion</h2>
+            <h2>Panel de Administracion</h2>
             <p>Bienvenido al sistema de Gas el Volcan</p>
             <p>Desde aqui podras administrar la distribuidora.</p>
 

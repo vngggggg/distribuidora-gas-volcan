@@ -1,6 +1,5 @@
 
 import './App.css'
-import Encabezado from "./components/Encabezado";
 import { useState } from 'react'
 import { Routes, Route, Link } from 'react-router-dom';
 import Inicio from './pages/Inicio';
@@ -11,6 +10,7 @@ import Contacto from './pages/Contacto';
 import Rutaprotegida from './components/Rutaprotegida';
 import Admin from './pages/Admin';
 import Login from './pages/Login';
+import Layout_1 from './layouts/Layout_1';
 
 
 
@@ -71,28 +71,15 @@ const cambiarCantidad = (id, nuevaCantidad) => {
   
 
   return (
-    <div className='pagina'>
-      <Encabezado
-      titulo="bienvenido a gas El Volcan"
-      subtitulo="Calor y confianza para tu hogar"
-      unidadesCarrito={unidadesCarrito}
-      />
-    
-    <nav className="menu menu-paginas">
-        <Link to="/">Inicio</Link>
-        <Link to="/productos">Cilindros</Link>
-        <Link to="/carrito">
-        Carrito ({unidadesCarrito})
-        </Link>
-        <Link to="/contacto">Contacto</Link>
-      </nav>
-    <main>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path='/' element={<Inicio />}/>
-        <Route path='/contacto' element={<Contacto />} />
+    <Routes>
+      <Route
+      element={
+        <Layout_1 unidadesCarrito={unidadesCarrito} />
+      }
+      >
+        <Route path='/' element={<Inicio />} />
 
-        <Route
+        <Route 
         path='/productos'
         element={
           <Productos
@@ -102,47 +89,44 @@ const cambiarCantidad = (id, nuevaCantidad) => {
           setBusqueda={setBusqueda}
           />
         }
-       /> 
-       <Route
-       path='/carrito'
-       element={
-        <CarritoPage
-        carrito={carrito}
-        total={total}
-        onEliminar={eliminarDelcarrito}
-        onCambiarCantidad={cambiarCantidad}
         />
-      }
-      />
-      <Route 
-      path="/admin"
-      element={<Rutaprotegida>
-      <Admin />
-      </Rutaprotegida>
-      }
-      />
-    <Route
-  path="*"
-  element={
-    <section className="pagina-error">
-      <h2>¡Ups! Página no encontrada</h2>
-      <p>Lo sentimos, no encontramos la página que buscas.</p>
-      <Link to="/">Volver al inicio</Link>
-    </section>
-  }
-/>
+        <Route
+        path='/carrito'
+        element={
+          <CarritoPage
+          carrito={carrito}
+          total={total}
+          onEliminar={eliminarDelcarrito}
+          onCambiarCantidad={cambiarCantidad}
+          />
+        }
+        />
+        <Route path='/contacto' element={<Contacto />} />
+        <Route path='/login' element={<Login />} />
 
-       
-       </Routes> 
-    </main>
-    <footer>
-      <p>
-        © 2026 Gas El Volcán · Chillán, Región de Ñuble
-      </p>
-    </footer>
-    </div>
+        <Route
+        path='/admin'
+        element={
+          <Rutaprotegida>
+            <Admin />
+          </Rutaprotegida>
+        }
+        />
+        <Route
+        path='*'
+        element={
+          <section className='pagina-error'>
+            <h2>¡Ups! Página no encontrada</h2>
+            <p>Lo sentimos, no encontramos la pagina</p>
+            <Link to="/">Volver al Inicio</Link>
+          </section>
+        }
+        />
+        </Route>
+    </Routes>
     
-    )
+    
+    );
   }
 
-export default App
+export default App;

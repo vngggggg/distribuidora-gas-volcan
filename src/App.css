@@ -570,6 +570,50 @@ footer {
   background-color: #10492b;
 }
 
+.login-contenedor {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 25px;
+}
+
+.login-contenedor .formulario-contacto {
+  flex: 1;
+  min-width: 0;
+}
+
+.login-demo {
+  flex: 1;
+  min-width: 0;
+  padding: 25px;
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  color: #1e293b;
+}
+
+.login-demo h3 {
+  color: #17365d;
+  margin-bottom: 15px;
+}
+
+.login-demo p {
+  margin-bottom: 12px;
+}
+
+@media (max-width: 768px) {
+  .login-contenedor {
+    flex-direction: column;
+  }
+
+  .login-contenedor .formulario-contacto,
+  .login-demo {
+    width: 100%;
+  }
+}
+
+
  
 
 

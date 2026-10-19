@@ -35,24 +35,28 @@ function Contacto() {
             <form className="formulario-contacto" onSubmit={enviar}>
                 
                 <div className="campo-contacto">
-                    <label>Nombre</label>
+                    <label htmlFor="nombre">Nombre</label>
                     <input
+                    id="nombre"
                     type="text"
                     value={nombre}
                     onChange={(e) => setNombre(e.target.value)}
                     />
                 </div>
                 <div className="campo-contacto">
-                    <label>
+                    <label htmlFor="correo">
                         Correo electronico
                     </label>
-                    <input type="email"
+                    <input
+                    id="correo" 
+                    type="email"
                     value={correo}
                     onChange={(e) => setCorreo(e.target.value)} />
                 </div>
                 <div className="campo-contacto">
-                    <label>Mensaje</label>
+                    <label htmlFor="mensaje">Mensaje</label>
                     <textarea
+                    id="mensaje"
                     value={mensaje}
                     onChange={(e) => setMensaje(e.target.value)}
                     />
