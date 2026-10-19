@@ -7,6 +7,10 @@ import Inicio from './pages/Inicio';
 import Productos from './pages/Productos';
 import productosDatos from './data/productos';
 import CarritoPage from './pages/CarritoPage';
+import Contacto from './pages/Contacto';
+import Rutaprotegida from './components/Rutaprotegida';
+import Admin from './pages/Admin';
+import Login from './pages/Login';
 
 
 
@@ -80,10 +84,13 @@ const cambiarCantidad = (id, nuevaCantidad) => {
         <Link to="/carrito">
         Carrito ({unidadesCarrito})
         </Link>
+        <Link to="/contacto">Contacto</Link>
       </nav>
     <main>
       <Routes>
+        <Route path="/login" element={<Login />} />
         <Route path='/' element={<Inicio />}/>
+        <Route path='/contacto' element={<Contacto />} />
 
         <Route
         path='/productos'
@@ -106,7 +113,14 @@ const cambiarCantidad = (id, nuevaCantidad) => {
         onCambiarCantidad={cambiarCantidad}
         />
       }
-    />
+      />
+      <Route 
+      path="/admin"
+      element={<Rutaprotegida>
+      <Admin />
+      </Rutaprotegida>
+      }
+      />
     <Route
   path="*"
   element={

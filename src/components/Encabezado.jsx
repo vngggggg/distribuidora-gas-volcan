@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom"
 function Encabezado({ titulo, subtitulo, unidadesCarrito }) {
   return (
     <header className="encabezado">
@@ -14,10 +14,11 @@ function Encabezado({ titulo, subtitulo, unidadesCarrito }) {
       <div className="contador-carrito">
         🛒 Carrito ({unidadesCarrito})
       </div>
+      <Link to="/login" className="boton-ingresar">
+      Iniciar Sesion
+      </Link>
 
-      <button className="boton-ingresar">
-        Iniciar sesión
-      </button>
+     
     </header>
   )
 }

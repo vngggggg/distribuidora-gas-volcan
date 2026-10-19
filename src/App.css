@@ -495,7 +495,81 @@ footer {
   background-color: #17643c;
   text-decoration: none;
   border-radius: 8px;
-} 
+  } 
+}
+
+
+
+.contacto {
+  width: 90%;
+  max-width: 550px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: white;
+  border: 1px solid #e5e9e1;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px #00000010;
+}
+
+.contacto h2 {
+  text-align: center;
+  color: #17643c;
+  margin-bottom: 12px;
+}
+
+.contacto p {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.formulario-contacto {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.campo-contacto {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo-contacto label {
+  font-weight: bold;
+  color: #17212b;
+}
+
+.campo-contacto input,
+.campo-contacto textarea {
+  width: 100%;
+  padding: 12px;
+  background-color: white;
+  color: #17212b;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+}
+
+.campo-contacto textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.formulario-contacto button {
+  padding: 13px;
+  background-color: #17643c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.formulario-contacto button:hover {
+  background-color: #10492b;
+}
+
  
 
 
@@ -504,7 +578,7 @@ footer {
 
   
 
-}
+
 
 
 
