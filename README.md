@@ -1,16 +1,100 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+# Distribuidora de Gas El Volcán
 
-Currently, two official plugins are available:
+## Descripción del proyecto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Aplicación web desarrollada para la Distribuidora de Gas El Volcán, ubicada en Chillán, Chile.
 
-## React Compiler
+El sistema permite visualizar productos, buscar cilindros de gas, gestionar un carrito de compras y utilizar un formulario de contacto.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+También incluye autenticación simulada y una página de administración protegida.
 
-## Expanding the Oxlint configuration
+Proyecto académico de la asignatura DSY1104 - Desarrollo Full Stack II, Evaluación Parcial 2.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Tecnologías utilizadas
+
+- React
+- Vite
+- JavaScript
+- React Router
+- Bootstrap
+- Vitest
+- React Testing Library
+- LocalStorage
+
+## Requisitos
+
+Tener instalados Node.js y npm.
+
+## Instalación y ejecución
+
+1. Clonar o descargar el repositorio.
+2. Abrir la carpeta del proyecto en Visual Studio Code.
+3. Abrir una terminal en la carpeta del proyecto.
+4. Instalar las dependencias:
+
+    npm install
+
+5. Iniciar el servidor de desarrollo:
+
+    npm run dev
+
+6. Abrir en el navegador la dirección local indicada por Vite.
+
+## Funcionalidades principales
+
+- Página de inicio.
+- Catálogo de cilindros de gas.
+- Búsqueda de productos.
+- Agregar productos al carrito.
+- Modificar cantidades y eliminar productos.
+- Cálculo del total del carrito.
+- Formulario de contacto con validaciones.
+- Inicio y cierre de sesión.
+- Panel de administración con ruta protegida.
+
+## Acceso de demostración
+
+Usuario: admin
+
+Contraseña: admin123
+
+La autenticación es simulada mediante LocalStorage y se utiliza únicamente con fines académicos.
+
+## Pruebas automatizadas
+
+El proyecto utiliza Vitest y React Testing Library.
+
+Ejecutar todas las pruebas:
+
+    npm run test
+
+Generar el reporte de cobertura:
+
+    npm run test:coverage
+
+Último resultado verificado:
+- 28 pruebas aprobadas.
+- 10 archivos de pruebas.
+- Cobertura de sentencias: 61,85 %.
+- Cobertura de ramas: 50 %.
+- Cobertura de funciones: 54,54 %.
+- Cobertura de líneas: 62,76 %.
+
+## Compilación de producción
+
+Ejecutar:
+
+    npm run build
+
+## Repositorio GitHub
+
+https://github.com/vngggggg/distribuidora-gas-volcan
+
+## Información académica
+
+Asignatura: DSY1104 - Desarrollo Full Stack II
+
+Evaluación: Evaluación Parcial 2 (EP2)
+
+Año: 2026

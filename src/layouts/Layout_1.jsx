@@ -1,7 +1,8 @@
 import { Outlet } from "react-router-dom";
 import Encabezado from "../components/Encabezado";
 import Navbar from "../components/Navbar";
-import Footer from "../components/footer";
+import Footer from "../components/Footer";
+
 
 function Layout_1({unidadesCarrito}){
     return (
