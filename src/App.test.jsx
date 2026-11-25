@@ -1,19 +1,32 @@
-import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
-import { Link, MemoryRouter } from "react-router-dom";
+import { describe, it, expect, vi, afterEach } from "vitest";
+import { render, screen, cleanup } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import App from "./App";
+import { AuthProvider } from "./auth/AuthContext";
 
-describe('Navegacion',() => {
-    it("muestra los enlaces del menu principal", () =>{
-        render(
-            <MemoryRouter>
-                <App />
-            </MemoryRouter>
-        );
+vi.mock("./services/api", () => ({
+  productosApi: { obtenerProductos: vi.fn().mockResolvedValue([]) },
+  pedidosApi: { crear: vi.fn() },
+  authApi: { login: vi.fn(), me: vi.fn() },
+}));
 
-        expect(screen.getByRole('link', { name: 'Inicio' })).toBeInTheDocument();
-        expect(screen.getByRole('link', { name: 'Cilindros' })).toBeInTheDocument();
-        expect(screen.getByRole('link', { name: 'Carrito (0)' })).toBeInTheDocument();
+afterEach(() => {
+  cleanup();
+});
 
-    });
+describe("Navegacion", () => {
+  it("muestra los enlaces del menu principal", async () => {
+    render(
+      <MemoryRouter>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </MemoryRouter>
+    );
+
+    expect(await screen.findByRole("link", { name: "Inicio" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Cilindros" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Carrito (0)" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Ingresar" })).toBeInTheDocument();
+  });
 });
