@@ -2,8 +2,25 @@
 import { useState } from "react"
 import { restar } from "../utils/calculos"
 
-function Carrito({carrito, total, onEliminar, onCambiarCantidad}) {
+function Carrito({carrito, total, onEliminar, onCambiarCantidad, onConfirmar}) {
     const [dinero, setDinero] = useState('');
+    const [mensaje, setMensaje] = useState('');
+    const [error, setError] = useState('');
+    const [enviando, setEnviando] = useState(false);
+
+    async function confirmar() {
+        setMensaje('');
+        setError('');
+        setEnviando(true);
+        try {
+            await onConfirmar();
+            setMensaje('¡Compra confirmada! Tu pedido fue registrado.');
+        } catch (e) {
+            setError(e.message);
+        } finally {
+            setEnviando(false);
+        }
+    }
     const restante = restar(Number(dinero),total)
     return(
         <section
@@ -36,6 +53,13 @@ function Carrito({carrito, total, onEliminar, onCambiarCantidad}) {
         <p>
             Total de la compra: ${total.toLocaleString("es-CL")}
         </p>
+        {onConfirmar && carrito.length > 0 && (
+        <button onClick={confirmar} disabled={enviando}>
+            {enviando ? 'Confirmando...' : 'Confirmar compra'}
+        </button>
+        )}
+        {mensaje && <p role="status">{mensaje}</p>}
+        {error && <p role="alert">{error}</p>}
         <div className="calculo-dinero">
             <h3>Calcula tu dinero restante</h3>
             <input

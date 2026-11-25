@@ -1,11 +1,11 @@
 
 import './App.css'
 import { useEffect, useState } from 'react'
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import Inicio from './pages/Inicio';
 import Productos from './pages/Productos';
 import { cargarProductos } from './services/productosServices';
-import { productosApi } from './services/api';
+import { productosApi, pedidosApi } from './services/api';
 import CarritoPage from './pages/CarritoPage';
 import Contacto from './pages/Contacto';
 import Rutaprotegida from './components/Rutaprotegida';
@@ -13,6 +13,7 @@ import Admin from './pages/Admin';
 import Login from './pages/Login';
 import Layout_1 from './layouts/Layout_1';
 import SinPermiso from './pages/SinPermiso';
+import { useAuth } from './auth/AuthContext';
 
 
 
@@ -24,6 +25,29 @@ function App() {
   const [productosApiDatos, setProductosApiDatos] = useState([])
   const [cargando, setCargando] = useState(true)
   const [errorProductos, setErrorProductos] = useState(null)
+
+    const { autenticado } = useAuth()
+  const navegar = useNavigate()
+
+  const recargarProductos = () =>
+    cargarProductos(productosApi).then(setProductosApiDatos).catch(() => {})
+
+  const confirmarCompra = async () => {
+    if (!autenticado) {
+      navegar('/login', { state: { from: '/carrito' } })
+      return
+    }
+    for (const item of [...carrito]) {
+      try {
+        await pedidosApi.crear({ productoId: item.id, cantidad: item.cantidad })
+        setcarrito((actual) => actual.filter((p) => p.id !== item.id))
+      } catch (error) {
+        await recargarProductos()
+        throw new Error(`${item.nombre}: ${error.message}`)
+      }
+    }
+    await recargarProductos()
+  }
 
   useEffect(() => {
     let activo = true
@@ -115,6 +139,7 @@ const cambiarCantidad = (id, nuevaCantidad) => {
           total={total}
           onEliminar={eliminarDelcarrito}
           onCambiarCantidad={cambiarCantidad}
+          onConfirmar={confirmarCompra}
           />
         }
         />

@@ -47,3 +47,8 @@ export const productosApi = {
   eliminar: (id) => request(`/api/productos/${id}`, { method: 'DELETE' }),
   obtenerProductos: () => request('/api/productos'),
 };
+export const pedidosApi = {
+  crear: (pedido) => request('/api/pedidos', { method: 'POST', body: JSON.stringify(pedido) }),
+  mios: () => request('/api/pedidos/mios'),
+  todos: () => request('/api/pedidos'),
+};
