@@ -1,10 +1,11 @@
 
 import './App.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, Route, Link } from 'react-router-dom';
 import Inicio from './pages/Inicio';
 import Productos from './pages/Productos';
-import productosDatos from './data/productos';
+import { cargarProductos } from './services/productosServices';
+import { productosApi } from './services/api';
 import CarritoPage from './pages/CarritoPage';
 import Contacto from './pages/Contacto';
 import Rutaprotegida from './components/Rutaprotegida';
@@ -18,6 +19,19 @@ function App() {
   const [busqueda, setBusqueda] = useState("")
 
   const [carrito, setcarrito] = useState([])
+
+  const [productosApiDatos, setProductosApiDatos] = useState([])
+  const [cargando, setCargando] = useState(true)
+  const [errorProductos, setErrorProductos] = useState(null)
+
+  useEffect(() => {
+    let activo = true
+    cargarProductos(productosApi)
+      .then((datos) => { if (activo) setProductosApiDatos(datos) })
+      .catch((error) => { if (activo) setErrorProductos(error.message) })
+      .finally(() => { if (activo) setCargando(false) })
+    return () => { activo = false }
+  }, [])
   
   const agregarAlCarrito = (producto) => {
     setcarrito((actual) => {
@@ -57,7 +71,7 @@ const cambiarCantidad = (id, nuevaCantidad) => {
   const unidadesCarrito = carrito.reduce(
     (suma, producto) => suma + producto.cantidad, 0
   )
-  const productos = productosDatos.map((producto) =>({
+  const productos = productosApiDatos.map((producto) =>({
     ...producto,
     precio: producto.precioResidencial,
     etiqueta: producto.codigo,
@@ -87,6 +101,8 @@ const cambiarCantidad = (id, nuevaCantidad) => {
           onAgregar={agregarAlCarrito}
           busqueda={busqueda}
           setBusqueda={setBusqueda}
+          cargando={cargando}
+          error={errorProductos}
           />
         }
         />
