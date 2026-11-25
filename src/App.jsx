@@ -12,6 +12,7 @@ import Rutaprotegida from './components/Rutaprotegida';
 import Admin from './pages/Admin';
 import Login from './pages/Login';
 import Layout_1 from './layouts/Layout_1';
+import SinPermiso from './pages/SinPermiso';
 
 
 
@@ -119,11 +120,12 @@ const cambiarCantidad = (id, nuevaCantidad) => {
         />
         <Route path='/contacto' element={<Contacto />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/sin-permiso' element={<SinPermiso />} />
 
         <Route
         path='/admin'
         element={
-          <Rutaprotegida>
+          <Rutaprotegida roles={['ADMIN']}>
             <Admin />
           </Rutaprotegida>
         }
