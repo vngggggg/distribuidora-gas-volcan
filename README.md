@@ -1,100 +1,32 @@
+# Frontend - Distribuidora Gas el Volcan
 
-# Distribuidora de Gas El Volcán
+Aplicacion React 19 + Vite que consume la API REST del backend Spring boot
 
-## Descripción del proyecto
+Backend: https://github.com/vngggggg/distribuidora-gas_volcan-backend.git
 
-Aplicación web desarrollada para la Distribuidora de Gas El Volcán, ubicada en Chillán, Chile.
+# Requisitos
+- Node.js 20 o superior
+- El backend corriendo en http://localhost:8080 (ver el README del backend)
 
-El sistema permite visualizar productos, buscar cilindros de gas, gestionar un carrito de compras y utilizar un formulario de contacto.
+# Ejecutable
+* npm install
+* npm run dev
 
-También incluye autenticación simulada y una página de administración protegida.
+Abrir http://localhost:5173. La URL de la API se puede cambiar con la variable VITE_API_URL (por defecto http://localhost:8080).
 
-Proyecto académico de la asignatura DSY1104 - Desarrollo Full Stack II, Evaluación Parcial 2.
+# Pruebas y build
+* npm test
+* npm run build
 
-## Tecnologías utilizadas
+# Usuarios de demostracion 
+| Usuario | Contraseña | Rol |
+------------------------------------------
+| admin | Admin123! | ADMIN
+| cliente | Cliente123! | CLIENTE
 
-- React
-- Vite
-- JavaScript
-- React Router
-- Bootstrap
-- Vitest
-- React Testing Library
-- LocalStorage
-
-## Requisitos
-
-Tener instalados Node.js y npm.
-
-## Instalación y ejecución
-
-1. Clonar o descargar el repositorio.
-2. Abrir la carpeta del proyecto en Visual Studio Code.
-3. Abrir una terminal en la carpeta del proyecto.
-4. Instalar las dependencias:
-
-    npm install
-
-5. Iniciar el servidor de desarrollo:
-
-    npm run dev
-
-6. Abrir en el navegador la dirección local indicada por Vite.
-
-## Funcionalidades principales
-
-- Página de inicio.
-- Catálogo de cilindros de gas.
-- Búsqueda de productos.
-- Agregar productos al carrito.
-- Modificar cantidades y eliminar productos.
-- Cálculo del total del carrito.
-- Formulario de contacto con validaciones.
-- Inicio y cierre de sesión.
-- Panel de administración con ruta protegida.
-
-## Acceso de demostración
-
-Usuario: admin
-
-Contraseña: admin123
-
-La autenticación es simulada mediante LocalStorage y se utiliza únicamente con fines académicos.
-
-## Pruebas automatizadas
-
-El proyecto utiliza Vitest y React Testing Library.
-
-Ejecutar todas las pruebas:
-
-    npm run test
-
-Generar el reporte de cobertura:
-
-    npm run test:coverage
-
-Último resultado verificado:
-- 28 pruebas aprobadas.
-- 10 archivos de pruebas.
-- Cobertura de sentencias: 61,85 %.
-- Cobertura de ramas: 50 %.
-- Cobertura de funciones: 54,54 %.
-- Cobertura de líneas: 62,76 %.
-
-## Compilación de producción
-
-Ejecutar:
-
-    npm run build
-
-## Repositorio GitHub
-
-https://github.com/vngggggg/distribuidora-gas-volcan
-
-## Información académica
-
-Asignatura: DSY1104 - Desarrollo Full Stack II
-
-Evaluación: Evaluación Parcial 2 (EP2)
-
-Año: 2026
+# Funcionalidades
+- Catalogo cargado desde de la API, con estados de carga y error.
+- Carrito que confirma la compra creando pedidods en el backend (valida stock)
+- Login con JWT: la sesion se conserva al recargar (sessionStorage), se valida con /auth/me y se cierra al vencer ek token
+- Rutas por rol: /admin solo par ADMIN, los demas ven la pantalla "sin permisos"; sin sesion se redirige al login
+- Panel de admin con CRUD de productos.
